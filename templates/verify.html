@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Verify Ticket - Triwizard Symposium 2025</title>
+<style>
+  body {
+    background: linear-gradient(135deg, #0a2239 0%, #003b70 100%);
+    color: #d9f0ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 40px;
+    text-align: center;
+  }
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: #a0e9ff;
+    text-shadow: 0 0 10px #00bfff;
+  }
+  form {
+    background-color: #062637;
+    padding: 25px 30px;
+    border-radius: 15px;
+    display: inline-block;
+    box-shadow: 0 0 15px #007acc;
+    max-width: 400px;
+    width: 90%;
+    margin-bottom: 30px;
+    text-align: left;
+  }
+  label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: #b7eaff;
+  }
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1em;
+    background-color: #134c68;
+    color: #e0f7ff;
+    box-shadow: inset 1px 1px 5px #000c12;
+  }
+  input[type="submit"] {
+    margin-top: 20px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    border: none;
+    padding: 12px 30px;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px #005ccc;
+    transition: background 0.3s ease;
+    width: 100%;
+  }
+  input[type="submit"]:hover {
+    background: linear-gradient(90deg, #0072ff, #00c6ff);
+  }
+  .ticket-details {
+    background-color: rgba(0, 116, 204, 0.15);
+    border-radius: 15px;
+    padding: 25px;
+    max-width: 400px;
+    margin: auto;
+    box-shadow:
+      0 0 15px rgba(0, 209, 255, 0.5),
+      inset 0 0 10px rgba(0, 209, 255, 0.3);
+    text-align: left;
+    line-height: 1.5;
+  }
+  .ticket-details h3 {
+    color: #00e5ff;
+    margin-bottom: 15px;
+  }
+  .error-message {
+    color: #ff6b6b;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  /* QR reader container */
+  #qr-reader {
+    width: 320px;
+    margin: 20px auto 30px;
+  }
+  #qr-reader__dashboard_section_csr {
+    display: none; /* hide camera switcher button */
+  }
+</style>
+
+<!-- Include html5-qrcode scanner library -->
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+</head>
+<body>
+
+<h2>Verify Ticket</h2>
+
+<form method="POST" id="verify-form">
+  <label for="ticket_no">Enter Ticket Number:</label>
+  <input type="text" id="ticket_no" name="ticket_no" placeholder="Ticket Number" required autocomplete="off" autofocus>
+  <input type="submit" value="Verify Ticket">
+</form>
+
+<div id="qr-reader"></div>
+
+{% if error %}
+  <p class="error-message">{{ error }}</p>
+{% endif %}
+
+{% if ticket %}
+  <div class="ticket-details">
+    <h3>Ticket Details</h3>
+    <p><strong>Ticket Number:</strong> {{ ticket.ticket_no }}</p>
+    <p><strong>Name:</strong> {{ ticket.name }}</p>
+    <p><strong>Email:</strong> {{ ticket.email }}</p>
+    <p><strong>Event:</strong> {{ ticket.event }}</p>
+    <p><strong>Date:</strong> {{ ticket.date }}</p>
+    <p><strong>Time:</strong> {{ ticket.time }}</p>
+    <p><strong>Venue:</strong> {{ ticket.venue }}</p>
+  </div>
+{% endif %}
+
+<script>
+  function onScanSuccess(decodedText, decodedResult) {
+    // Expected QR format: "name|ticket_no|event|email"
+    const parts = decodedText.split('|');
+    if (parts.length >= 2) {
+      const ticketNo = parts[1];
+      document.getElementById('ticket_no').value = ticketNo;
+      // Auto-submit form after short delay
+      setTimeout(() => {
+        document.getElementById('verify-form').submit();
+      }, 500);
+      // Stop scanner after successful scan
+      html5QrcodeScanner.clear();
+    } else {
+      alert("Invalid QR code format scanned.");
+    }
+  }
+
+  var html5QrcodeScanner = new Html5QrcodeScanner("qr-reader", { fps: 10, qrbox: 250 });
+
+  html5QrcodeScanner.render(onScanSuccess);
+</script>
+
+</body>
+</html>

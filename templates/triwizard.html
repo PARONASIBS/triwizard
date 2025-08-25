@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Triwizard Symposium 2025 - Events</title>
+
+<style>
+  /* Reset and base styles */
+  *, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a2239 0%, #003b70 100%);
+    color: #e0f0ff;
+    min-height: 100vh;
+    padding: 3rem 2rem;
+    max-width: 1000px;
+    margin: auto;
+  }
+
+  h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    text-shadow:
+      0 0 10px #00bfff,
+      0 0 20px #00bfff;
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  p.tagline {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #a0d8ff;
+    text-shadow: 0 0 8px #0077cc;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      text-shadow:
+        0 0 10px #00bfff,
+        0 0 20px #00bfff;
+      color: #00e5ff;
+    }
+    50% {
+      text-shadow:
+        0 0 20px #00ffff,
+        0 0 40px #00ffff;
+      color: #a0f0ff;
+    }
+  }
+  
+  /* Event list container */
+  .events-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    padding: 0 1rem;
+  }
+
+  /* Make entire card clickable */
+  .event-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    border-radius: 15px;
+    overflow: hidden;
+    opacity: 0;
+    animation: fadeInUp 1s forwards;
+    box-shadow:
+      0 0 10px rgba(0, 209, 255, 0.5),
+      inset 0 0 8px rgba(0, 209, 255, 0.3);
+    backdrop-filter: blur(8px);
+    background: rgba(0,116,204,0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .event-link:hover, .event-link:focus {
+    transform: translateY(-10px);
+    box-shadow:
+      0 0 15px #00ffff,
+      0 0 30px #00ffff;
+    outline: none;
+  }
+  /* Stagger animation delays */
+  .event-link:nth-child(1) { animation-delay: 0.2s; }
+  .event-link:nth-child(2) { animation-delay: 0.4s; }
+  .event-link:nth-child(3) { animation-delay: 0.6s; }
+  .event-link:nth-child(4) { animation-delay: 0.8s; }
+  .event-link:nth-child(5) { animation-delay: 1s; }
+  .event-link:nth-child(6) { animation-delay: 1.2s; }
+
+  .event-card {
+    padding: 1.8rem;
+  }
+
+  h2.event-name {
+    font-size: 1.7rem;
+    color: #00e5ff;
+    margin-bottom: 0.8rem;
+  }
+  p.event-desc {
+    font-size: 1rem;
+    color: #cceaff;
+    margin-bottom: 1rem;
+    min-height: 70px;
+  }
+  p.category {
+    font-size: 0.9rem;
+    font-style: italic;
+    font-weight: 600;
+    color: #80d9ff;
+    margin-bottom: 0.4rem;
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  footer {
+    margin-top: 4rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: #80ccff;
+  }
+
+  @media (max-width: 500px) {
+    h1 {
+      font-size: 2.2rem;
+    }
+    .event-card {
+      padding: 1.2rem;
+    }
+    h2.event-name {
+      font-size: 1.4rem;
+    }
+    p.event-desc {
+      min-height: 60px;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+<h1>Triwizard Symposium 2025 - Events</h1>
+<p class="tagline">Explore, Compete & Innovate across diverse arenas!</p>
+
+<div class="events-container">
+  <a href="/form?event=Curse%20Breakers" class="event-link" tabindex="1">
+    <div class="event-card">
+      <p class="category">TECH</p>
+      <h2 class="event-name">Curse Breakers</h2>
+      <p class="event-desc">Dive into cryptography challenges and unravel digital curses with your skills.</p>
+    </div>
+  </a>
+  <a href="/form?event=Creature%20Canvas" class="event-link" tabindex="2">
+    <div class="event-card">
+      <p class="category">TECH</p>
+      <h2 class="event-name">Creature Canvas</h2>
+      <p class="event-desc">Explore AI-driven art creation and bring magical creatures to life digitally.</p>
+    </div>
+  </a>
+  <a href="/form?event=Python%20Showdown" class="event-link" tabindex="3">
+    <div class="event-card">
+      <p class="category">TECH</p>
+      <h2 class="event-name">Python Showdown</h2>
+      <p class="event-desc">Test your prowess in this fast-paced competitive Python programming contest.</p>
+    </div>
+  </a>
+  <a href="/form?event=Hunt%20for%20Horcrux" class="event-link" tabindex="4">
+    <div class="event-card">
+      <p class="category">NON-TECH</p>
+      <h2 class="event-name">Hunt for Horcrux</h2>
+      <p class="event-desc">A thrilling scavenger hunt blending tech puzzles with adventure.</p>
+    </div>
+  </a>
+  <a href="/form?event=Secure%20the%20Castle" class="event-link" tabindex="5">
+    <div class="event-card">
+      <p class="category">NON-TECH</p>
+      <h2 class="event-name">Secure the Castle</h2>
+      <p class="event-desc">Participate in a live cybersecurity defense simulation to protect your stronghold.</p>
+    </div>
+  </a>
+  <a href="/form?event=Harry%20Potter%20Trivia" class="event-link" tabindex="6">
+    <div class="event-card">
+      <p class="category">NON-TECH</p>
+      <h2 class="event-name">Harry Potter Trivia</h2>
+      <p class="event-desc">Show your magical knowledge in this engaging trivia contest.</p>
+    </div>
+  </a>
+</div>
+
+<footer>
+  &copy; 2025 Triwizard Symposium | SRM Institute of Science and Technology
+</footer>
+
+</body>
+</html>

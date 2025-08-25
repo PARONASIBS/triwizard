@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Triwizard Symposium Ticket Generator</title>
+<style>
+  body {
+    background-color: #0a2239;
+    color: #d9f0ff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 30px;
+    text-align: center;
+  }
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    color: #a0e9ff;
+    text-shadow: 0 0 10px #00bfff;
+  }
+  form {
+    background-color: #062637;
+    padding: 30px;
+    border-radius: 15px;
+    display: inline-block;
+    box-shadow: 0 0 15px #007acc;
+    min-width: 350px;
+    text-align: left;
+  }
+  label {
+    display: block;
+    font-weight: bold;
+    margin-top: 15px;
+    font-size: 1.1em;
+    color: #b7eaff;
+  }
+  input[type="text"],
+  input[type="email"],
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border-radius: 8px;
+    border: none;
+    font-size: 1em;
+    background-color: #134c68;
+    color: #e0f7ff;
+    box-shadow: inset 1px 1px 5px #000c12;
+  }
+  input[readonly] {
+    background-color: #0d3a57;
+    cursor: not-allowed;
+  }
+  input[type="submit"] {
+    margin-top: 20px;
+    background: linear-gradient(90deg, #00c6ff, #0072ff);
+    border: none;
+    padding: 12px 30px;
+    color: white;
+    font-size: 1.2em;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px #005ccc;
+    transition: background 0.3s ease;
+  }
+  input[type="submit"]:hover {
+    background: linear-gradient(90deg, #0072ff, #00c6ff);
+  }
+</style>
+</head>
+<body>
+
+<h2>Triwizard Symposium Ticket Generator</h2>
+<form method="POST">
+  <label for="name">Full Name:</label>
+  <input type="text" id="name" name="name" placeholder="Enter your full name" required>
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+  <label for="ticket_no">Ticket Number:</label>
+  <input type="text" id="ticket_no" name="ticket_no" value="{{ ticket_no_generated }}" readonly>
+
+
+
+<label for="event">Event:</label>
+<input type="text" id="event" name="event" value="{{ event_prefill }}" readonly style="background-color: #134c68; color: #e0f7ff; border-radius:8px; padding:10px; width:100%; border:none; box-shadow: inset 1px 1px 5px #000c12; font-size:1em;">
+
+  <input type="submit" value="Generate Ticket">
+</form>
+
+</body>
+</html>
+
+

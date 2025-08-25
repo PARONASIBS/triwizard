@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Triwizard Symposium 2025</title>
+
+<style>
+  /* Reset and base */
+  *, *::before, *::after {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0a2239 0%, #003b70 100%);
+    color: #e0f0ff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-x: hidden;
+  }
+  main {
+    max-width: 1100px;
+    width: 90%;
+    padding: 3rem 1rem;
+    text-align: center;
+    position: relative;
+    z-index: 10; /* ensures content over animations */
+  }
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    text-shadow:
+      0 0 10px #00bfff,
+      0 0 20px #00bfff,
+      0 0 40px #0ff;
+    color: #00e5ff;
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+  .tagline {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 3rem;
+    color: #a0d8ff;
+    text-shadow: 0 0 8px #0077cc;
+  }
+  nav {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+    flex-wrap: wrap;
+    z-index: 10;
+    position: relative;
+  }
+  nav a {
+    position: relative;
+    text-decoration: none;
+    color: #00d8ff;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.8rem 1.6rem;
+    border-radius: 30px;
+    background: rgba(0, 216, 255, 0.12);
+    backdrop-filter: blur(5px);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    box-shadow: 0 0 5px rgba(0, 216, 255, 0.3);
+  }
+  nav a:hover, nav a:focus {
+    background: #00d8ff;
+    color: #003b70;
+    outline: none;
+    box-shadow: 0 0 20px #00d8ff;
+  }
+  nav a.register {
+    background: #00ffb3;
+    color: #004d40;
+    box-shadow: 0 0 8px #00ffb3;
+  }
+  nav a.register:hover, nav a.register:focus {
+    background: #00cc86;
+    color: #00281a;
+    box-shadow: 0 0 20px #00cc86;
+  }
+  nav a::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    width: 0;
+    height: 3px;
+    background-color: #00d8ff;
+    border-radius: 20px;
+    transition: width 0.3s ease, left 0.3s ease;
+  }
+  nav a:hover::after, nav a:focus::after {
+    width: 60%;
+    left: 20%;
+  }
+  .glow {
+    animation: pulse 3s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% {
+      text-shadow:
+        0 0 5px #00e5ff,
+        0 0 10px #00e5ff,
+        0 0 20px #00ffff;
+      color: #00e5ff;
+    }
+    50% {
+      text-shadow:
+        0 0 15px #00ffff,
+        0 0 30px #00ffff,
+        0 0 45px #00ffff;
+      color: #a0f0ff;
+    }
+  }
+  footer {
+    margin-top: auto;
+    padding: 1rem 0;
+    width: 100%;
+    background: rgba(0, 55, 102, 0.6);
+    color: #99d9ff;
+    font-size: 0.85rem;
+    text-align: center;
+    z-index: 10;
+    position: relative;
+  }
+  .dragon-container {
+  position: relative; /* scrolls with content */
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 2rem auto; /* centered horizontally with bottom spacing */
+  animation: flyDragon 3s forwards;
+  pointer-events: none;
+  filter: drop-shadow(0 0 10px #00e5ff);
+  z-index: 10;
+}
+
+.dragon-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Animation moves dragon from left outside container area to center */
+@keyframes flyDragon {
+  0% {
+    transform: translateX(-400px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.main-description {
+  max-width: 600px;
+  margin: 2rem auto 3rem auto; /* Only a small gap after the dragon */
+  font-size: 1.2rem;
+  color: #a0d8ff;
+  text-shadow:
+    0 0 8px #0077cc,
+    0 0 10px #004d7a;
+  line-height: 1.6;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  transition: text-shadow 0.4s ease-in-out;
+  text-align: center;
+  position: relative;
+  z-index: 10;
+}
+
+  .main-description:hover {
+    color: #00ffff;
+    text-shadow:
+      0 0 15px #00ffff,
+      0 0 25px #00eaff,
+      0 0 35px #00dfff;
+    cursor: default;
+  }
+  @media (max-width: 600px) {
+    h1 {
+      font-size: 2.2rem;
+      letter-spacing: 1.5px;
+    }
+    .dragon-container {
+      width: 150px;
+      height: 150px;
+      top: 40%;
+    }
+    .main-description {
+      font-size: 1rem;
+      margin: calc(40vh + 80px) auto 2rem auto;
+      max-width: 90%;
+    }
+  }
+</style>
+
+</head>
+<body>
+
+
+
+<main>
+  <h1 class="glow">Triwizard Symposium 2025</h1>
+  <p class="tagline">Innovate. Compete. Collaborate.</p>
+    <nav>
+    <a href="/triwizard" tabindex="1">Event Details</a>
+    <a href="/triwizard" tabindex="2" class="register">Register Now</a>
+    <a href="/verify" tabindex="3">Verify Ticket</a>
+  </nav>
+  <div class="dragon-container">
+  <img src="/static/dragon_flying.png" alt="Flying Dragon" />
+</div>
+  <p class="main-description">
+    Join us for two exciting days at SRM Vadapalani Auditorium featuring technology showcases, coding battles, and immersive workshops.  
+    Get your ticket today and be a part of the future!
+  </p>
+
+  
+</main>
+
+<footer>
+  &copy; 2025 Triwizard Symposium | SRM Institute of Science and Technology
+</footer>
+
+</body>
+</html>
